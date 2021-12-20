@@ -1,5 +1,7 @@
 @extends('layouts.master')
 @section('content')
+
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -20,31 +22,59 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card">
+
+
+                    <div class="card card-primary card-outline">
                         <div class="card-header">
-                            <h3 class="card-title">DataTable with default features</h3>
+                            <h3 class="card-title">Dishes</h3>
+                            <a href="dish/create" class="btn btn-success float-right">New Dish</a>
                         </div>
-                        <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="example2" class="table table-bordered table-hover">
+                            @if (session('message'))
+                            <div class="alert alert-success">
+                                {{ session('message') }}
+                            </div>
+                            @endif
+                            <table id="dishes" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Rendering engine</th>
-                                        <th>Browser</th>
-                                        <th>Platform(s)</th>
-                                        <th>Engine version</th>
-                                        <th>CSS grade</th>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Category</th>
+                                        <th>Created At</th>
+                                        <th>Action</th>
                                     </tr>
+
                                 </thead>
                                 <tbody>
+                                    @foreach ($dishes as $dish)
+                                    <tr>
+                                        <td>{{$dish->id}}</td>
+                                        <td>{{$dish->name}}</td>
+                                        <td>{{$dish->category->name}}</td>
+                                        <td>{{$dish->created_at}}</td>
+                                        <td>
+                                            <div class="form-row">
+                                                <a href="/dish/{{$dish->id}}/edit" class="btn btn-warning "
+                                                    style="height: 40px">Edit</a>
+                                                <form action="/dish/{{$dish->id}}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger ml-3">Delete</button>
+                                                </form>
+                                            </div>
 
+                                        </td>
+
+
+
+                                    </tr>
+
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-
-
-
+                    </div><!-- /.card -->
                 </div>
 
             </div>
@@ -55,21 +85,20 @@
 </div>
 <!-- /.content-wrapper -->
 @endsection
-<!-- Page specific script -->
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
 <script>
     $(function () {
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        // "autoWidth": false,
-        // "responsive": true,
-      });
-    });
+         
+          $('#dishes').DataTable({
+            "paging": true,
+            "pageLength" : 10,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+          });
+        });
 </script>
