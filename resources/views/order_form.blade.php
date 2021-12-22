@@ -119,7 +119,7 @@
                                                     <td class="text-success text-bold">{{$status[$order->status]}}</td>
                                                     <td>{{$order->created_at}}</td>
                                                     <td>
-                                                        <a href="/order/{{$order->id}}/serve"
+                                                        <a href="{{route('order.serve',$order->id)}}"
                                                             class="btn btn-success">Serve</a>
                                                         <a href="/order/{{$order->id}}/notify"
                                                             class="btn btn-danger">Notify</a>

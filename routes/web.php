@@ -40,3 +40,9 @@ Route::get('/order/{order}/notify', [App\Http\Controllers\OrderController::class
 // category module crud and users modules crud
 Route::resource('/category', App\Http\Controllers\DishesController::class);
 Route::resource('/users', App\Http\Controllers\DishesController::class);
+
+//-------------- to do list ------------------------------//
+//naming routes uses
+//ui improve
+//unit testing
+//finding and fixing bugs
