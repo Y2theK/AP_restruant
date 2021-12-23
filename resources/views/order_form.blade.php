@@ -117,7 +117,7 @@
                                                     <td>{{$order->dish->name}}</td>
                                                     <td>{{$order->table_id}}</td>
                                                     <td class="text-success text-bold">{{$status[$order->status]}}</td>
-                                                    <td>{{$order->created_at}}</td>
+                                                    <td>{{$order->updated_at->diffForHumans()}}</td>
                                                     <td>
                                                         <a href="{{route('order.serve',$order->id)}}"
                                                             class="btn btn-success">Serve</a>

@@ -52,7 +52,7 @@
                                         <td>{{$order->dish->name}}</td>
                                         <td>{{$order->table_id}}</td>
                                         <td class="text-success text-bold">{{$status[$order->status]}}</td>
-                                        <td>{{$order->created_at}}</td>
+                                        <td>{{$order->created_at->diffForHumans()}}</td>
                                         <td>
                                             <a href="/order/{{$order->id}}/approve" class="btn btn-success">Approve</a>
                                             <a href="/order/{{$order->id}}/cancel" class="btn btn-danger">Cancel</a>

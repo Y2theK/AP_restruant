@@ -52,7 +52,7 @@
                                         <td>{{$dish->id}}</td>
                                         <td>{{$dish->name}}</td>
                                         <td>{{$dish->category->name}}</td>
-                                        <td>{{$dish->created_at}}</td>
+                                        <td>{{$dish->created_at->diffForHumans()}}</td>
                                         <td>
                                             <div class="form-row">
                                                 <a href="/dish/{{$dish->id}}/edit" class="btn btn-warning "
